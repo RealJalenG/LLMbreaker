@@ -1,0 +1,61 @@
+# LLMbreaker 应用配置文件
+# 复制此文件为 app_config.yaml 并填入实际值
+
+# 目标接口配置
+target:
+  url: "https://xxx.com"
+  qps_limit: 10
+  timeout: 30
+  retry_count: 3
+
+# LLM提供商配置
+llm_providers:
+  deepseek:
+    api_key: "${DEEPSEEK_API_KEY}"  # 使用环境变量
+    api_url: "https://api.deepseek.com/v1/chat/completions"
+    model_name: "deepseek-chat"
+    max_tokens: 4096
+    temperature: 0.7
+  
+  qwen:
+    api_key: "${QWEN_API_KEY}"
+    api_url: "https://xxx.com"
+    model_name: "qwen-max-latest"
+    max_tokens: 4096
+    temperature: 0.7
+  
+  gemini:
+    api_key: "${GEMINI_API_KEY}"
+    api_url: "https://xxx.com"
+    model_name: "gemini-3-pro-preview"
+    max_tokens: 4096
+    temperature: 0.7
+
+# IP池配置
+ip_pool:
+  api_url: "${IP_POOL_API_URL:-}"
+  api_key: "${IP_POOL_API_KEY:-}"
+  change_interval: 3
+
+# 多Agent协同配置
+multi_agent:
+  enabled: false
+  max_agents: 5
+  communication_timeout: 30
+
+# 攻击配置
+attack:
+  template_path: "config/attack_templates.yaml"
+  owasp_types:
+    - "Prompt Injection"
+    - "Training Data Extraction"
+    - "Model Denial of Service"
+    - "Supply Chain Vulnerabilities"
+    - "Sensitive Information Disclosure"
+    - "Insecure Output"
+    - "Excessive Agency"
+    - "Overreliance"
+  attack_methods:
+    - "deepseek"
+    - "qwen"
+    - "gemini"

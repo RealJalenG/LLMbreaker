@@ -1,0 +1,22 @@
+<runtime_context>
+The python code is executed in a runtime with the following global variables:
+
+1. `input`: The input object, type: `{{ input_model_name }}`.
+2. `tools`: A namespace object containing the tools you can use.
+3. `OutputModel`: The output class that you should use to return the result, type: `Type[{{ output_model_name }}]`.
+4. `output`: The variable that you should assign the result to, type: `{{ output_model_name }}`.
+
+<tools>
+{% for tool in tools %}
+- `tools.{{ tool.name }}`: {{ tool.desc }}
+{% endfor %}
+</tools>
+
+<input_schema>
+{{ input_schema }}
+</input_schema>
+
+<output_schema>
+{{ output_schema }}
+</output_schema>
+</runtime_context>
